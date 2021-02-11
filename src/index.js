@@ -30,9 +30,9 @@ app.get('/companys', (request, response) => {
 })
 
 app.post('/companys', (request, response) => {
-  const {name, url} = request.body;
+  const {name, url, country, city} = request.body;
 
-  const company = {id: uuid(), name, url}
+  const company = {id: uuid(), name, url, country, city}
 
   companys.push(company)
 
@@ -41,7 +41,7 @@ app.post('/companys', (request, response) => {
 
 app.put('/companys/:id', (request, response) => {
   const {id} = request.params;
-  const {name, url} = request.body;
+  const {name, url, country, city} = request.body;
 
   const companyIndex = companys.findIndex(company => company.id === id)
 
@@ -53,6 +53,8 @@ app.put('/companys/:id', (request, response) => {
     id,
     name,
     url,
+    country,
+    city
   }
 
   companys[companyIndex] = company;
